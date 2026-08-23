@@ -1,17 +1,504 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edvino FiveM Shop</title>
+    <title>Storyx.Lt Teisinis Pranešimas & Blacklist | one-code</title>
+    <style>
+        :root {
+            --bg-color: #0d0f17;
+            --card-bg: #141726;
+            --border-color: #232845;
+            --text-main: #e2e8f0;
+            --text-muted: #8c9ba5;
+            --accent-red: #ff3838;
+            --accent-green: #2ed573;
+            --accent-blue: #4b7bec;
+            --accent-orange: #fa8231;
+            --code-bg: #090b10;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 45px 20px;
+            background: linear-gradient(135deg, #320a0e 0%, #141726 100%);
+            border: 2px solid var(--accent-red);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(255, 56, 56, 0.35);
+        }
+
+        header h1 {
+            color: var(--accent-red);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .ultimatum-box {
+            background-color: rgba(255, 56, 56, 0.12);
+            border: 2px dashed var(--accent-red);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(255, 56, 56, 0.2);
+            text-align: center;
+        }
+
+        .ultimatum-box h2 {
+            color: var(--accent-red);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .timer-container {
+            margin: 22px 0;
+        }
+
+        .timer-badge {
+            display: inline-block;
+            background: var(--code-bg);
+            border: 2px solid var(--accent-red);
+            color: var(--accent-red);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            letter-spacing: 4px;
+            box-shadow: 0 0 25px rgba(255, 56, 56, 0.5);
+            font-family: monospace;
+        }
+
+        .ultimatum-box p {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            text-align: left;
+        }
+
+        .ultimatum-box ul {
+            list-style-position: inside;
+            margin-left: 10px;
+            color: var(--accent-green);
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .payment-box {
+            background-color: rgba(46, 213, 115, 0.1);
+            border: 2px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .payment-box h3 {
+            color: var(--accent-green);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .paypal-btn {
+            display: inline-block;
+            background-color: #0070ba;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 112, 186, 0.4);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .paypal-btn:hover {
+            background-color: #005ea6;
+            transform: translateY(-2px);
+        }
+
+        .payment-info {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-top: 10px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h2 {
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .profile-box {
+            background-color: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .profile-box.victim {
+            border-left-color: var(--accent-green);
+        }
+
+        .profile-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .profile-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .profile-box a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .timeline {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .timeline li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .timeline li::before {
+            content: "⚖️";
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .timeline p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background-color: rgba(255, 56, 56, 0.08);
+            border: 1px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .warning-box p {
+            color: var(--accent-red);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .warning-box ul {
+            list-style-position: inside;
+            color: var(--text-main);
+        }
+
+        .legal-box {
+            background-color: rgba(250, 130, 49, 0.1);
+            border: 1px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .legal-box h3 {
+            color: var(--accent-orange);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .pm-evidence-box {
+            background-color: var(--code-bg);
+            border: 2px dashed var(--accent-blue);
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .pm-evidence-box h3 {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .pm-evidence-box p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .pm-tag {
+            display: inline-block;
+            background: rgba(75, 123, 236, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--accent-green);
+        }
+
+        .tag-red {
+            color: var(--accent-red);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Edvino FiveM Shop</h1>
-    <h2>FiveM Gaming Screenshots</h2>
-    <img src="https://example.com/fivem-screenshot1.jpg" alt="FiveM Screenshot 1" />
-    <img src="https://example.com/fivem-screenshot2.jpg" alt="FiveM Screenshot 2" />
-    <h2>Server Hosting Images</h2>
-    <img src="https://example.com/server-hosting1.jpg" alt="Server Hosting 1" />
-    <img src="https://example.com/server-hosting2.jpg" alt="Server Hosting 2" />
+
+    <div class="container">
+        
+        <header>
+            <h1>⚖️ OFICIALUS TEISINIS PRANEŠIMAS ⚖️</h1>
+            <p>FiveM Serverio "Storyx.Lt" Atsakomybės, Sukčiavimo ir Turto Nusavinimo Bylos Informacija</p>
+        </header>
+
+        <!-- PRE-TRIAL IKITEISMINIS ULTIMATUMAS -->
+        <div class="ultimatum-box">
+            <h2>🚨 IKITEISMINIS PRANEŠIMAS (78 VALANDŲ TERMINAS)</h2>
+            <p>Šis puslapis yra oficialus fiksuotas pranešimas apie vykdomą tyrimą dėl intelektinės nuosavybės vagystės, finansinės apgaulės bei <strong>sistemingo (pakartotinio) sukčiavimo</strong> nemokant už atliktas paslaugas. <strong>Visas "Storyx.Lt" serverio funkcionavimas rėmėsi išskirtinai one-code autoriniais failais bei sistemomis.</strong></p>
+
+            <div class="timer-container">
+                <div class="timer-badge">⏳ TERMINAS PATEIKIMUI: <span id="countdown">78:00:00</span></div>
+            </div>
+
+            <p>Fiksuoti visi duomenys: pokalbių išrašai, ankstesnių apgavysčių įrodymai, bankinių pervedimų rekvizitai, IP adresai bei kodo autorystės įrodymai. Nieko trynimas ar blokavimas teisinių procedūrų nesustabdys.</p>
+            <p><strong>IKITEISMINIO SUSITARIMO SĄLYGOS PER 78H:</strong></p>
+            <ul>
+                <li>Perversti <strong>20 EUR</strong> už atliktus paslaugų darbus tiesiogiai per PayPal mygtuką žemiau.</li>
+                <li>Gavus 20 EUR apmokėjimą, laikmatis sustabdomas, o puslapis bei visi teisiniai pareiškimai pilnai <strong>PANAIKINAMI PER 24 VALANDAS</strong>.</li>
+            </ul>
+
+            <div class="payment-box">
+                <h3>💳 GREITAS ATSISKAITYMAS IR SUTARTIES SUTVARKYMAS</h3>
+                <p class="payment-info">Apmokėjimo suma sutarties padengimui: <strong>20.00 EUR</strong></p>
+                <a href="https://paypal.me/EdvinasPonas/20EUR" target="_blank" class="paypal-btn">
+                    💙 Apmokėti 20€ per PayPal (paypal.me/EdvinasPonas)
+                </a>
+                <p style="font-size: 0.9rem; color: var(--accent-green); font-weight: bold;">
+                    ✅ Gavus 20€ pavedimą, šis puslapis, laikmatis ir visi pareiškimai bus VISIŠKAI PANAIKINTI per 24 valandas.
+                </p>
+            </div>
+
+            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); text-align: left;">
+                Suėjus 78 h terminui ir neatsiskaičius, byla be papildomo įspėjimo perduodama <strong>ePolicija.lt</strong> (Ikiteisminis tyrimas dėl sistemingo sukčiavimo), Valstybinei mokesčių inspekcijai (VMI dėl neapmokestinamų serverio pajamų) bei ieškinys teismui dėl žalai atlyginti.
+            </p>
+        </div>
+
+        <!-- IDENTIFIKUOTI ASMENYS -->
+        <div class="card">
+            <h2>👤 Subjektų ir Tapatybių Duomenys</h2>
+            <div class="profile-grid">
+                
+                <div class="profile-box victim">
+                    <h3>Autorius / Programuotojas</h3>
+                    <p><strong>Discord:</strong> <span class="tag">one-code</span></p>
+                    <p><strong>Username:</strong> simiukas_1</p>
+                    <p><strong>Oficialus puslapis:</strong> <a href="https://guns.lol/one_code" target="_blank">guns.lol/one_code</a></p>
+                    <p><strong>PayPal Pavedimams:</strong> <a href="https://paypal.me/EdvinasPonas" target="_blank">paypal.me/EdvinasPonas</a></p>
+                </div>
+
+                <div class="profile-box">
+                    <h3>Projekto Informacija</h3>
+                    <p><strong>Serverio pavadinimas:</strong> Storyx.Lt</p>
+                    <p><strong>Discord:</strong> <a href="https://discord.gg/9hxHfKYYqq" target="_blank">discord.gg/9hxHfKYYqq</a></p>
+                </div>
+
+                <div class="profile-box">
+                    <h3>Atsakovas / Projekto Savininkas</h3>
+                    <p><strong>Discord:</strong> <span class="tag tag-red">k1nderiz</span> (K1nderiz)</p>
+                    <p><strong>Puslapis:</strong> <a href="https://guns.lol/k1nderiz.gg" target="_blank">guns.lol/k1nderiz.gg</a></p>
+                    <p style="color: var(--accent-orange); margin-top: 8px; font-size: 0.85rem;">
+                        ⚠️ <strong>IDENTIFIKUOTAS:</strong> Tikrasis vardas, pavardė, banko rekvizitai ir gyvenamosios vietos adresas išsaugoti.
+                    </p>
+                </div>
+
+                <div class="profile-box">
+                    <h3>Bendrininkas / Platinimo Atsakovas</h3>
+                    <p><strong>Discord:</strong> <span class="tag tag-red">dec5t</span> (dec5t_dev)</p>
+                    <p><strong>Bio:</strong> <em>"Tikras dec5t_dev paskyra. Turiu daug failu kam reikia pm"</em></p>
+                    <p style="color: var(--accent-orange); margin-top: 8px; font-size: 0.85rem;">
+                        ⚠️ <strong>IDENTIFIKUOTAS:</strong> Asmens tapatybė, kontaktiniai duomenys bei gyvenamasis adresas fiksavimo protokole.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FACTUAL TIMELINE -->
+        <div class="card">
+            <h2>📋 Įvykių Fiksavimo Protokolas</h2>
+            <ul class="timeline">
+                <li>
+                    <h3>1. Techninės Užduoties Vykdymas ir Autorystė</h3>
+                    <p>Programuotojas <strong>one-code (simiukas_1)</strong> atliko FiveM serverio "Storyx.Lt" pilną techninę architektūrą, kodo optimizavimą ir duomenų bazių diegimą.</p>
+                </li>
+                <li>
+                    <h3>2. Įsipareigojimų Vykdymas ir Pakartotinis Sukčiavimas</h3>
+                    <p>Projektui buvo perduoti ir įdiegti visi sutarti skriptai bei autorinės sistemos. Nepaisant to, kad tai <strong>nebuvo pirmasis kartas</strong>, kai šie subjektai bando išvengti atsiskaitymo ir apgaudinėja paslaugų teikėją, buvo tikimasi sąžiningo susitarimo.</p>
+                </li>
+                <li>
+                    <h3>3. Neteisėtas Užvaldymas ir Prieigų Panaikinimas</h3>
+                    <p>Užbaigus darbus, atsakovai <strong>k1nderiz</strong> bei <strong>dec5t_dev</strong> vienašališkai atėmė prieigas, neatsiskaitė už atliktą darbą, užblokavo kontaktus ir pasisavino intelektinę nuosavybę.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- LEGAL AND DDOS WARNINGS -->
+        <div class="card">
+            <h2>🛑 Teisinė Atsakomybė ir Kibernetinis Saugumas</h2>
+            <div class="warning-box">
+                <p>⚠️ PERSPĖJIMAS BENDRUOMENEI IR PIRKĖJAMS:</p>
+                <ul>
+                    <li><strong>Neteisėtas Naudojimas:</strong> "Storyx.Lt" sistemos yra neteisėtai pasisavintos iš <strong>one-code</strong>.</li>
+                    <li><strong>Neteisėtas Platinimas:</strong> Vartotojo <em>dec5t_dev</em> siūlomi failai yra vagystės objektas (LR BK 218 str.).</li>
+                    <li><strong>Pasekmės Pirkėjams:</strong> Pirkdami paslaugas ar skriptus iš šių asmenų, rizikuojate tapti tyrimo dalimi.</li>
+                </ul>
+            </div>
+
+            <div class="legal-box">
+                <h3>⚖️ TAIKOMI LR BAUDŽIAMOJO KODEKSO STRAIPSNIAI IR DDOS APSAUGA</h3>
+                <p>1. <strong>LR BK 182 str. (Pakartotinis sukčiavimas):</strong> Nemokėjimas už paslaugas, apgulės būdu gautas svetimas turtas/kodas bei sistemingas veikimas prieš paslaugų teikėją (sunkinanti aplinkybė teisme).</p>
+                <p>2. <strong>LR BK 196 str. (Kibernetinės atakos / DDoS):</strong> Ši svetainė turi kelių lygmenų serverinį kešavimą ir rezervines kopijas. Bet kokios DDoS atakos bus automatiškai registruojamos su IP adresais ir tiesiogiai prijungiamos prie policijos tyrimo.</p>
+                <p>3. <strong>VMI Pranešimas:</strong> Medžiaga apie serverio priimamas įmokas/aukas be juridinio statuso ar neapmokestinamų pajamų deklaravimo ruošiama Finansinių nusikaltimų tyrimo tarnybai (FNTT).</p>
+            </div>
+        </div>
+
+        <!-- EVIDENCE CONTACT -->
+        <div class="card">
+            <h2>📸 Įrodymų Medžiaga ir Gauti Failai</h2>
+            
+            <div class="pm-evidence-box">
+                <h3>💬 Reikia Pilnos Teisinės Medžiagos ir Pokalbių Išrašų?</h3>
+                <p>Visi sertifikuoti screenshot'ai, žinutės, SQL dump'ai, pakartotinių apgaulių įrodymai ir autorystės faktai teikiami tiesiogiai.</p>
+
+                <div class="pm-tag">📩 Rašyti asmenine žinute (PM): one-code</div>
+
+                <p style="margin-top: 15px; font-size: 0.95rem; color: var(--text-muted);">
+                    Discord: <strong>one-code</strong> (simiukas_1)
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Visi duomenys užfiksuoti teisiniam procedūrų procesui. Dėl klausimų kreiptis Discord'e: <strong>one-code (simiukas_1)</strong></p>
+        </footer>
+
+    </div>
+
+    <!-- COUNTDOWN SCRIPT -->
+    <script>
+        const HOURS = 78;
+        const COUNTDOWN_KEY = 'storyx_blacklist_end_time';
+
+        let endTime = localStorage.getItem(COUNTDOWN_KEY);
+
+        if (!endTime) {
+            endTime = new Date().getTime() + (HOURS * 60 * 60 * 1000);
+            localStorage.setItem(COUNTDOWN_KEY, endTime);
+        }
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "TERMINAS PASIBAIGĖ - BYLA PERDUOTA!";
+                document.getElementById("countdown").style.color = "#ff3838";
+                return;
+            }
+
+            const hours = Math.floor(distance / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const formatHours = hours < 10 ? "0" + hours : hours;
+            const formatMinutes = minutes < 10 ? "0" + minutes : minutes;
+            const formatSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("countdown").innerText = `${formatHours}:${formatMinutes}:${formatSeconds}`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+
 </body>
 </html>
